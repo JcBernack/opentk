@@ -445,6 +445,7 @@ namespace OpenTK
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <returns>Result of subtraction</returns>
+        [Obsolete("Use static Subtract() method instead.")]
         public static Vector4 Sub(Vector4 a, Vector4 b)
         {
             a.X -= b.X;
@@ -460,6 +461,7 @@ namespace OpenTK
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <param name="result">Result of subtraction</param>
+        [Obsolete("Use static Subtract() method instead.")]
         public static void Sub(ref Vector4 a, ref Vector4 b, out Vector4 result)
         {
             result.X = a.X - b.X;
