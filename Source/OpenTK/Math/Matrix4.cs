@@ -1336,10 +1336,10 @@ namespace OpenTK
         /// <param name="result">A new instance that is the result of the addition.</param>
         public static void Add(ref Matrix4 left, ref Matrix4 right, out Matrix4 result)
         {
-            result.Row0 = left.Row0 + right.Row0;
-            result.Row1 = left.Row1 + right.Row1;
-            result.Row2 = left.Row2 + right.Row2;
-            result.Row3 = left.Row3 + right.Row3;
+            Vector4.Add(ref left.Row0, ref right.Row0, out result.Row0);
+            Vector4.Add(ref left.Row1, ref right.Row1, out result.Row1);
+            Vector4.Add(ref left.Row2, ref right.Row2, out result.Row2);
+            Vector4.Add(ref left.Row3, ref right.Row3, out result.Row3);
         }
 
         #endregion
@@ -1367,10 +1367,10 @@ namespace OpenTK
         /// <param name="result">A new instance that is the result of the subraction.</param>
         public static void Subtract(ref Matrix4 left, ref Matrix4 right, out Matrix4 result)
         {
-            result.Row0 = left.Row0 - right.Row0;
-            result.Row1 = left.Row1 - right.Row1;
-            result.Row2 = left.Row2 - right.Row2;
-            result.Row3 = left.Row3 - right.Row3;
+            Vector4.Subtract(ref left.Row0, ref right.Row0, out result.Row0);
+            Vector4.Subtract(ref left.Row1, ref right.Row1, out result.Row1);
+            Vector4.Subtract(ref left.Row2, ref right.Row2, out result.Row2);
+            Vector4.Subtract(ref left.Row3, ref right.Row3, out result.Row3);
         }
 
         #endregion
@@ -1654,7 +1654,8 @@ namespace OpenTK
         /// <returns>A new Matrix4 which holds the result of the addition</returns>
         public static Matrix4 operator +(Matrix4 left, Matrix4 right)
         {
-            return Matrix4.Add(left, right);
+            Matrix4.Add(ref left, ref right, out left);
+            return left;
         }
 
         /// <summary>
@@ -1665,7 +1666,8 @@ namespace OpenTK
         /// <returns>A new Matrix4 which holds the result of the subtraction</returns>
         public static Matrix4 operator -(Matrix4 left, Matrix4 right)
         {
-            return Matrix4.Subtract(left, right);
+            Matrix4.Subtract(ref left, ref right, out left);
+            return left;
         }
 
         /// <summary>
