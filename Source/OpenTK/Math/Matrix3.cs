@@ -698,6 +698,36 @@ namespace OpenTK
 
         #endregion
 
+        #region Subtract Functions
+
+        /// <summary>
+        /// Subtracts one instance from another.
+        /// </summary>
+        /// <param name="left">The left operand of the subraction.</param>
+        /// <param name="right">The right operand of the subraction.</param>
+        /// <returns>A new instance that is the result of the subraction.</returns>
+        public static Matrix3 Subtract(Matrix3 left, Matrix3 right)
+        {
+            Matrix3 result;
+            Subtract(ref left, ref right, out result);
+            return result;
+        }
+
+        /// <summary>
+        /// Subtracts one instance from another.
+        /// </summary>
+        /// <param name="left">The left operand of the subraction.</param>
+        /// <param name="right">The right operand of the subraction.</param>
+        /// <param name="result">A new instance that is the result of the subraction.</param>
+        public static void Subtract(ref Matrix3 left, ref Matrix3 right, out Matrix3 result)
+        {
+            Vector3.Subtract(ref left.Row0, ref right.Row0, out result.Row0);
+            Vector3.Subtract(ref left.Row1, ref right.Row1, out result.Row1);
+            Vector3.Subtract(ref left.Row2, ref right.Row2, out result.Row2);
+        }
+
+        #endregion
+
         #region Multiply Functions
 
         /// <summary>
@@ -911,6 +941,30 @@ namespace OpenTK
         public static Matrix3 operator *(Matrix3 left, Matrix3 right)
         {
             return Matrix3.Mult(left, right);
+        }
+
+        /// <summary>
+        /// Matrix addition
+        /// </summary>
+        /// <param name="left">left-hand operand</param>
+        /// <param name="right">right-hand operand</param>
+        /// <returns>A new Matrix4 which holds the result of the addition</returns>
+        public static Matrix3 operator +(Matrix3 left, Matrix3 right)
+        {
+            Matrix3.Add(ref left, ref right, out left);
+            return left;
+        }
+
+        /// <summary>
+        /// Matrix subtraction
+        /// </summary>
+        /// <param name="left">left-hand operand</param>
+        /// <param name="right">right-hand operand</param>
+        /// <returns>A new Matrix4 which holds the result of the subtraction</returns>
+        public static Matrix3 operator -(Matrix3 left, Matrix3 right)
+        {
+            Matrix3.Subtract(ref left, ref right, out left);
+            return left;
         }
 
         /// <summary>
